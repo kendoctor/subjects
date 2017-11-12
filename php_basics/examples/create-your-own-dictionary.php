@@ -5,8 +5,26 @@
  */
 function display_main_menu()
 {
+    $mainMenu = [
+        "Welcome to use self-made dictionary.",
+        "Enter the number of which action you want to select!",
+        "[1] Add",
+        "[2] List",
+        "[3] Find",
+        "[4] Remove",
+        "[5] Exit",
+    ];
+
     //clear previous info on screen
+    system('cls');
+
     //display main menu
+    for($i=0; $i<count($mainMenu); $i++)
+    {
+        echo $mainMenu[$i]."\n";
+    }
+
+
 }
 
 /**
@@ -14,8 +32,13 @@ function display_main_menu()
  */
 function get_main_menu_action()
 {
-    //wait and read console input
-    //return input
+    //wait and read console input and return input
+
+    $handle = fopen("php://stdin", "r");
+    $input = fgets($handle);
+    fclose($handle);
+
+    return $input;
 }
 
 /**
@@ -47,7 +70,9 @@ function add_vocabulary()
  */
 function display_adding_vocabulary_tips()
 {
-
+    system('cls');
+    echo "Input vocabulary, for example:\n";
+    echo "PHP=a web programming language\n";
 }
 
 /**
@@ -55,7 +80,11 @@ function display_adding_vocabulary_tips()
  */
 function get_adding_vocabulary_input()
 {
+    $handle = fopen("php://stdin", "r");
+    $input = fgets($handle);
+    fclose($handle);
 
+    return $input;
 }
 
 //cycle until select [5]quit action
@@ -63,7 +92,7 @@ while(true) {
 
     display_main_menu();
 
-    switch(get_main_menu_action())
+    switch(intval(get_main_menu_action()))
     {
         case 1:
             add_vocabulary();
@@ -81,7 +110,7 @@ while(true) {
             break;
         case 5:
             //quit the program
-            break;
+            break 2;
         default:
             //continue while cycle
             break ;
