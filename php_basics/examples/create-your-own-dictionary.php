@@ -7,7 +7,7 @@ function display_main_menu()
 {
     $mainMenu = [
         "Welcome to use self-made dictionary.",
-        "Enter the number of which action you want to select!",
+        "Enter the number of which action you want to do!",
         "[1] Add",
         "[2] List",
         "[3] Find",
@@ -44,7 +44,7 @@ function get_main_menu_action()
 /**
  * Add vocabulary
  */
-function add_vocabulary()
+function add_vocabulary_action()
 {
     while(true) {
         display_adding_vocabulary_tips();
@@ -95,7 +95,7 @@ while(true) {
     switch(intval(get_main_menu_action()))
     {
         case 1:
-            add_vocabulary();
+            add_vocabulary_action();
             break;
 
         case 2:

@@ -11,7 +11,7 @@
 
 Analyze what to do and determine which features we should implement at first.
 
-Prioritize features in orders. Chose most important feature to do first.
+Prioritize features in orders. Choose most important feature to do first.
 
 Preconditions and constraints:
 1. The dictionary program should be run in console.
@@ -55,6 +55,17 @@ Let us list the scenarios and steps for 1st feature.
         * If successfully added, when return back, show successful tips 
         * Otherwise, show failure tips
     * If input nothing, it will return back to main menu.
+
+
+According to the analysis,
+
+* Define functions without implementation.
+* Scratch the outlines of program.
+* Write comments when needed 
+
+> In the first phase, emphasize to guarantee the main logic of program is right.
+
+ 
 
 ```php
 <?php
@@ -149,6 +160,130 @@ while(true) {
     
 ```
 
+> Next, writing codes in details following the main logic until complete the feature. 
+
+
+
+```php
+<?php
+
+/**
+ * display main menu
+ */
+function display_main_menu()
+{
+    $mainMenu = [
+        "Welcome to use self-made dictionary.",
+        "Enter the number of which action you want to do!",
+        "[1] Add",
+        "[2] List",
+        "[3] Find",
+        "[4] Remove",
+        "[5] Exit",
+    ];
+
+    //clear previous info on screen
+    system('cls');
+
+    //display main menu
+    for($i=0; $i<count($mainMenu); $i++)
+    {
+        echo $mainMenu[$i]."\n";
+    }
+
+
+}
+
+/**
+ * Get main menu action from input
+ */
+function get_main_menu_action()
+{
+    //wait and read console input and return input
+
+    $handle = fopen("php://stdin", "r");
+    $input = fgets($handle);
+    fclose($handle);
+
+    return $input;
+}
+
+/**
+ * Add vocabulary
+ */
+function add_vocabulary_action()
+{
+    while(true) {
+        display_adding_vocabulary_tips();
+        $input = trim(get_adding_vocabulary_input());
+
+        //if input is empty, return back to main menu
+        if(empty($input))
+        {
+            return;
+        }
+
+        //if input is not matched format, continue while cycle
+
+
+
+        //write add vocabulary logic
+    }
+
+}
+
+/**
+ * display adding vocabulary tips
+ */
+function display_adding_vocabulary_tips()
+{
+    system('cls');
+    echo "Input vocabulary, for example:\n";
+    echo "PHP=a web programming language\n";
+}
+
+/**
+ * get adding vocabulary input
+ */
+function get_adding_vocabulary_input()
+{
+    $handle = fopen("php://stdin", "r");
+    $input = fgets($handle);
+    fclose($handle);
+
+    return $input;
+}
+
+//cycle until select [5]quit action
+while(true) {
+
+    display_main_menu();
+
+    switch(intval(get_main_menu_action()))
+    {
+        case 1:
+            add_vocabulary_action();
+            break;
+
+        case 2:
+            //list vocabularies
+            break;
+
+        case 3:
+            //find vocabulary
+            break;
+        case 4:
+            //remove vocabulary
+            break;
+        case 5:
+            //quit the program
+            break 2;
+        default:
+            //continue while cycle
+            break ;
+    }
+}
+```
   
   
 
