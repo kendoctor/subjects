@@ -46,8 +46,10 @@ function get_main_menu_action()
  */
 function add_vocabulary_action()
 {
+    $is_added = null;
+
     while(true) {
-        display_adding_vocabulary_tips();
+        display_adding_vocabulary_tips($is_added);
         $input = trim(get_adding_vocabulary_input());
 
         //if input is empty, return back to main menu
@@ -56,11 +58,20 @@ function add_vocabulary_action()
             return;
         }
 
+        //do regex match to get : headword and explanation separately
+        if(preg_match("/^(.+[^=])=([^=].+)/", $input, $matches))
+        {
+            //save the vocabulary to dictionary
+            //open or create new file for storing
+            add_vocabulary_to_dictionary(trim($matches[1]), trim($matches[2]));
+            $is_added = true;
+            continue;
+        }
+
         //if input is not matched format, continue while cycle
+        //if 0, means input not matched
+        $is_added = false;
 
-
-
-        //write add vocabulary logic
     }
 
 }
@@ -68,11 +79,20 @@ function add_vocabulary_action()
 /**
  * display adding vocabulary tips
  */
-function display_adding_vocabulary_tips()
+function display_adding_vocabulary_tips($is_added)
 {
     system('cls');
-    echo "Input vocabulary, for example:\n";
-    echo "PHP=a web programming language\n";
+    echo "Input vocabulary, for example: PHP=a web programming language\n";
+    echo "Enter nothing to return back to main menu.\n";
+
+    if($is_added === true)
+    {
+        echo "Successfully added.\n";
+    }
+    elseif($is_added === false)
+    {
+        echo "Failed to add.\n";
+    }
 }
 
 /**
@@ -86,6 +106,76 @@ function get_adding_vocabulary_input()
 
     return $input;
 }
+
+
+/**
+ * load vocabularies into array from the dictionary
+ */
+function loadDictionary()
+{
+    $dict = [];
+
+    if(!file_exists(__DIR__."/dict.dat"))
+    {
+        return $dict;
+    }
+
+    $handle = fopen("dict.dat", "r");
+    if(!$handle)
+    {
+        die("Exception: can not read dictionary data.");
+    }
+
+    while($line = fgets($handle))
+    {
+        //match as: php=it's a web programming language.
+        if(preg_match("/^(\w+)=([\w\s]+)$/", trim($line), $matches))
+        $dict[$matches[1]] = $matches[2];
+    }
+
+    fclose($handle);
+
+    return $dict;
+}
+
+/**
+ * save vocabularies into the dictionary
+ *
+ * @param $dict
+ */
+function saveDictionary($dict)
+{
+    $handle =  fopen(__DIR__."/dict.dat", "w");
+    if(!$handle)
+    {
+        die("Exception: create dictionary.");
+    }
+
+    //sort headword by ascending
+    ksort($dict);
+    foreach($dict as $headword => $explanation)
+    {
+        fputs($handle, sprintf("%s=%s\r\n", $headword, $explanation));
+    }
+
+
+    fclose($handle);
+}
+
+/**
+ * add a vocabulary to the dictionary
+ *
+ * @param $headword
+ * @param $explanation
+ */
+function add_vocabulary_to_dictionary($headword, $explanation)
+{
+    $dict = loadDictionary();
+    //todo: if the vocabulary already exists, should consider more.
+    $dict[$headword] = $explanation;
+    saveDictionary($dict);
+}
+
 
 //cycle until select [5]quit action
 while(true) {
