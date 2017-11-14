@@ -62,7 +62,6 @@ function add_vocabulary_action()
         if(preg_match("/^(.+[^=])=([^=].+)/", $input, $matches))
         {
             //save the vocabulary to dictionary
-            //open or create new file for storing
             add_vocabulary_to_dictionary(trim($matches[1]), trim($matches[2]));
             $is_added = true;
             continue;
