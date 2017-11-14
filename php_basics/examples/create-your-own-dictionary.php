@@ -59,7 +59,7 @@ function add_vocabulary_action()
         }
 
         //do regex match to get : headword and explanation separately
-        if(preg_match("/^(.+[^=])=([^=].+)/", $input, $matches))
+        if(preg_match("/^([^=]+)=(.+)/", $input, $matches))
         {
             //save the vocabulary to dictionary
             add_vocabulary_to_dictionary(trim($matches[1]), trim($matches[2]));
@@ -119,7 +119,7 @@ function loadDictionary()
         return $dict;
     }
 
-    $handle = fopen("dict.dat", "r");
+    $handle = fopen(__DIR__."/dict.dat", "r");
     if(!$handle)
     {
         die("Exception: can not read dictionary data.");
@@ -128,7 +128,7 @@ function loadDictionary()
     while($line = fgets($handle))
     {
         //match as: php=it's a web programming language.
-        if(preg_match("/^(\w+)=([\w\s]+)$/", trim($line), $matches))
+        if(preg_match("/^([^=]+)=(.+)/", trim($line), $matches))
         $dict[$matches[1]] = $matches[2];
     }
 
@@ -162,7 +162,7 @@ function saveDictionary($dict)
 }
 
 /**
- * add a vocabulary to the dictionary
+ * Add a vocabulary to the dictionary
  *
  * @param $headword
  * @param $explanation
@@ -175,6 +175,38 @@ function add_vocabulary_to_dictionary($headword, $explanation)
     saveDictionary($dict);
 }
 
+/**
+ * List vocabularies by ascending order
+ */
+function list_vocabularies_action()
+{
+    //load the dictionary
+    $dict = loadDictionary();
+
+    //display vocabularies
+    foreach($dict as $headword => $explanation)
+    {
+        echo sprintf("%s => %s\r\n", $headword, $explanation);
+    }
+
+    if(empty($dict))
+    {
+        echo "The dictionary is empty.\n";
+    }
+
+    wait_for_enter_to_continue();
+}
+
+/**
+ *  Wait until hitting Enter key
+ */
+function wait_for_enter_to_continue()
+{
+    $handle = fopen("php://stdin", "r");
+    fgetc($handle);
+    fclose($handle);
+}
+
 
 //cycle until select [5]quit action
 while(true) {
@@ -184,11 +216,13 @@ while(true) {
     switch(intval(get_main_menu_action()))
     {
         case 1:
+            //add a vocabulary
             add_vocabulary_action();
             break;
 
         case 2:
             //list vocabularies
+            list_vocabularies_action();
             break;
 
         case 3:

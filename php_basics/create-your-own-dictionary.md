@@ -453,7 +453,90 @@ function saveDictionary($dict)
 ```
 
 
+### 3rd Feature : List vocabularies from the dictionary.
+
+Let us list the scenarios and steps for this feature.
+
+1. Choose `List vocabularies action` on main menu. 
+2. List vocabularies by asc order
+    * If the dictionary is empty, show tips
+3. Hit 'Enter' return back to main menu.
+
+According to the analysis,
+
+* Define functions.
+* Write code for the feature.
+* Write comments when needed.
+
+```php
+<?php
+...
+/**
+ * List vocabularies by ascending order
+ */
+function list_vocabularies_action()
+{
+    //load the dictionary
+    $dict = loadDictionary();
+
+    //display vocabularies
+    foreach($dict as $headword => $explanation)
+    {
+        echo sprintf("%s => %s\r\n", $headword, $explanation);
+    }
+
+    if(empty($dict))
+    {
+        echo "The dictionary is empty.\n";
+    }
+
+    wait_for_enter_to_continue();
+}
+
+/**
+ *  Wait until hitting Enter key
+ */
+function wait_for_enter_to_continue()
+{
+    $handle = fopen("php://stdin", "r");
+    fgetc($handle);
+    fclose($handle);
+}
+
+//cycle until select [5]quit action
+while(true) {
+
+    display_main_menu();
+
+    switch(intval(get_main_menu_action()))
+    {
+        case 1:
+            //add a vocabulary
+            add_vocabulary_action();
+            break;
+
+        case 2:
+            //list vocabularies
+            list_vocabularies_action();
+            break;
+
+        case 3:
+            //find vocabulary
+            break;
+        case 4:
+            //remove vocabulary
+            break;
+        case 5:
+            //quit the program
+            break 2;
+        default:
+            //continue while cycle
+            break ;
+    }
+}
+
+...
 
 
-
+```
 
