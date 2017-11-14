@@ -364,7 +364,7 @@ function loadDictionary()
  *
  * @param $dict
  */
-function saveDictionary($dict)
+function save_dictionary($dict)
 {
    
 }
@@ -377,10 +377,10 @@ function saveDictionary($dict)
  */
 function add_vocabulary_to_dictionary($headword, $explanation)
 {
-    $dict = loadDictionary();
+    $dict = load_dictionary();
     //todo: if the vocabulary already exists, should consider more.
     $dict[$headword] = $explanation;
-    saveDictionary($dict);
+    save_dictionary($dict);
 }
 
 ...
@@ -398,7 +398,7 @@ Write codes in detail to complete the feature.
 /**
  * load vocabularies into array from the dictionary
  */
-function loadDictionary()
+function load_dictionary()
 {
     $dict = [];
 
@@ -430,7 +430,7 @@ function loadDictionary()
  *
  * @param $dict
  */
-function saveDictionary($dict)
+function save_dictionary($dict)
 {
     $handle =  fopen(__DIR__."/dict.dat", "w");
     if(!$handle)
@@ -477,7 +477,7 @@ According to the analysis,
 function list_vocabularies_action()
 {
     //load the dictionary
-    $dict = loadDictionary();
+    $dict = load_dictionary();
 
     //display vocabularies
     foreach($dict as $headword => $explanation)

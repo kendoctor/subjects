@@ -110,7 +110,7 @@ function get_adding_vocabulary_input()
 /**
  * load vocabularies into array from the dictionary
  */
-function loadDictionary()
+function load_dictionary()
 {
     $dict = [];
 
@@ -142,7 +142,7 @@ function loadDictionary()
  *
  * @param $dict
  */
-function saveDictionary($dict)
+function save_dictionary($dict)
 {
     $handle =  fopen(__DIR__."/dict.dat", "w");
     if(!$handle)
@@ -169,10 +169,10 @@ function saveDictionary($dict)
  */
 function add_vocabulary_to_dictionary($headword, $explanation)
 {
-    $dict = loadDictionary();
+    $dict = load_dictionary();
     //todo: if the vocabulary already exists, should consider more.
     $dict[$headword] = $explanation;
-    saveDictionary($dict);
+    save_dictionary($dict);
 }
 
 /**
@@ -181,7 +181,7 @@ function add_vocabulary_to_dictionary($headword, $explanation)
 function list_vocabularies_action()
 {
     //load the dictionary
-    $dict = loadDictionary();
+    $dict = load_dictionary();
 
     //display vocabularies
     foreach($dict as $headword => $explanation)
@@ -207,35 +207,39 @@ function wait_for_enter_to_continue()
     fclose($handle);
 }
 
+function run()
+{
+    //cycle until select [5]quit action
+    while(true) {
 
-//cycle until select [5]quit action
-while(true) {
+        display_main_menu();
 
-    display_main_menu();
+        switch(intval(get_main_menu_action()))
+        {
+            case 1:
+                //add a vocabulary
+                add_vocabulary_action();
+                break;
 
-    switch(intval(get_main_menu_action()))
-    {
-        case 1:
-            //add a vocabulary
-            add_vocabulary_action();
-            break;
+            case 2:
+                //list vocabularies
+                list_vocabularies_action();
+                break;
 
-        case 2:
-            //list vocabularies
-            list_vocabularies_action();
-            break;
-
-        case 3:
-            //find vocabulary
-            break;
-        case 4:
-            //remove vocabulary
-            break;
-        case 5:
-            //quit the program
-            break 2;
-        default:
-            //continue while cycle
-            break ;
+            case 3:
+                //find vocabulary
+                break;
+            case 4:
+                //remove vocabulary
+                break;
+            case 5:
+                //quit the program
+                break 2;
+            default:
+                //continue while cycle
+                break ;
+        }
     }
 }
+
+run();
