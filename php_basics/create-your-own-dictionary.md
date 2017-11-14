@@ -47,15 +47,8 @@ Let us list the scenarios and steps for 1st feature.
 
 1. Run the program
 2. Display main menu list for add, list, find, remove and quit actions
-3. Choose `[1]Add` action by entering number indicator of actions
-    * If input not matched, return back to step 2
-4. Display `Add vocabulary tips` and wait for input
-5. Input vocabulary information and hit `Enter`, 
-    * Do `add_vocabulary` logic and return back to step 4 for continue adding 
-        * If successfully added, when return back, show successful tips 
-        * Otherwise, show failure tips
-    * If input nothing, it will return back to main menu.
-
+3. Choose action by entering the number, if input not matched, return back to step 2
+4. Do action until return back to main menu.
 
 According to the analysis,
 
@@ -71,61 +64,24 @@ According to the analysis,
 <?php
 
 /**
- * display main menu
+ * Display main menu
  */
 function display_main_menu()
 {
-    //clear previous info on screen
-    //display main menu
 }
 
 /**
  * Get main menu action from input
  */
 function get_main_menu_action()
-{
-    //wait and read console input
-    //return input
+{   
 }
 
 /**
- * Add vocabulary
+ * Action for add vocabulary
  */
-function add_vocabulary()
-{
-    while(true) {
-        display_adding_vocabulary_tips();
-        $input = trim(get_adding_vocabulary_input());
-
-        //if input is empty, return back to main menu
-        if(empty($input))
-        {
-            return;
-        }
-
-        //if input is not matched format, continue while cycle
-
-
-
-        //write add vocabulary logic
-    }
-
-}
-
-/**
- * display adding vocabulary tips
- */
-function display_adding_vocabulary_tips()
-{
-
-}
-
-/**
- * get adding vocabulary input
- */
-function get_adding_vocabulary_input()
-{
-
+function add_vocabulary_action()
+{    
 }
 
 //cycle until select [5]quit action
@@ -136,7 +92,7 @@ while(true) {
     switch(get_main_menu_action())
     {
         case 1:
-            add_vocabulary();
+            add_vocabulary_action();
             break;
 
         case 2:
@@ -160,8 +116,7 @@ while(true) {
     
 ```
 
-> Next, writing codes in details following the main logic until complete the feature. 
-
+> Next, writing codes in detail following the main logic until complete the feature. 
 
 
 ```php
@@ -208,52 +163,6 @@ function get_main_menu_action()
     return $input;
 }
 
-/**
- * Add vocabulary
- */
-function add_vocabulary_action()
-{
-    while(true) {
-        display_adding_vocabulary_tips();
-        $input = trim(get_adding_vocabulary_input());
-
-        //if input is empty, return back to main menu
-        if(empty($input))
-        {
-            return;
-        }
-
-        //if input is not matched format, continue while cycle
-
-
-
-        //write add vocabulary logic
-    }
-
-}
-
-/**
- * display adding vocabulary tips
- */
-function display_adding_vocabulary_tips()
-{
-    system('cls');
-    echo "Input vocabulary, for example:\n";
-    echo "PHP=a web programming language\n";
-}
-
-/**
- * get adding vocabulary input
- */
-function get_adding_vocabulary_input()
-{
-    $handle = fopen("php://stdin", "r");
-    $input = fgets($handle);
-    fclose($handle);
-
-    return $input;
-}
-
 //cycle until select [5]quit action
 while(true) {
 
@@ -285,9 +194,89 @@ while(true) {
 }
 ```
   
-  
+### 2nd Feature : Adding a vocabulary to the dictionary.
+
+Let us list the scenarios and steps for 2nd feature.
+
+1. Choose `Add vocabulary action` on main menu. 
+2. Display `Add vocabulary tips` and wait for input
+3. User inputs and hit `enter`
+    * Add vocabulary and return back to step 2 for continue adding 
+        * If successfully added, when return back, show successful tips 
+        * Otherwise, show failure tips
+    * If input nothing, it will return back to main menu.
 
 
+According to the analysis,
+
+* Define functions without full implementation.
+* Scratch the outlines of Add vocabulary feature.
+* Write comments when needed 
+
+```php
+<?php
+...
+    
+/**
+ * Display adding vocabulary tips
+ */
+function display_adding_vocabulary_tips()
+{
+    
+}
+
+/**
+ * Get adding vocabulary input
+ */
+function get_adding_vocabulary_input()
+{
+    
+}
+
+
+/**
+ * add a vocabulary to the dictionary
+ *
+ * @param $headword
+ * @param $explanation
+ */
+function add_vocabulary_to_dictionary($headword, $explanation)
+{
+}
+
+/**
+ * Add vocabulary action
+ */
+function add_vocabulary_action()
+{
+
+    while(true) {
+        display_adding_vocabulary_tips();
+        $input = get_adding_vocabulary_input();
+
+        //if input is empty, return back to main menu
+        if(empty($input))
+        {
+            return;
+        }
+
+        //do regex match to get : headword and explanation separately
+        if(preg_match("/^(.+[^=])=([^=].+)/", $input, $matches))
+        {
+            //save the vocabulary to dictionary
+            //open or create new file for storing
+            add_vocabulary_to_dictionary(trim($matches[1]), trim($matches[2]));
+            continue;
+        }
+
+        //if input is not matched format, continue while cycle
+
+    }
+}
+
+...
+
+```
 
 
 

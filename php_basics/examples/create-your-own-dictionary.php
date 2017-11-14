@@ -42,7 +42,7 @@ function get_main_menu_action()
 }
 
 /**
- * Add vocabulary
+ * Add vocabulary action
  */
 function add_vocabulary_action()
 {
@@ -50,7 +50,7 @@ function add_vocabulary_action()
 
     while(true) {
         display_adding_vocabulary_tips($is_added);
-        $input = trim(get_adding_vocabulary_input());
+        $input = get_adding_vocabulary_input();
 
         //if input is empty, return back to main menu
         if(empty($input))
@@ -77,7 +77,7 @@ function add_vocabulary_action()
 }
 
 /**
- * display adding vocabulary tips
+ * Display adding vocabulary tips
  */
 function display_adding_vocabulary_tips($is_added)
 {
@@ -96,7 +96,7 @@ function display_adding_vocabulary_tips($is_added)
 }
 
 /**
- * get adding vocabulary input
+ * Get adding vocabulary input
  */
 function get_adding_vocabulary_input()
 {
@@ -104,7 +104,7 @@ function get_adding_vocabulary_input()
     $input = fgets($handle);
     fclose($handle);
 
-    return $input;
+    return trim($input);
 }
 
 
