@@ -312,7 +312,7 @@ function add_vocabulary_action()
         }
 
         //if input is not matched format, continue while cycle
-        //if 0, means input not matched
+        //if false, means input not matched
         $is_added = false;
 
     }
@@ -540,3 +540,222 @@ while(true) {
 
 ```
 
+### 4th Feature : Find vocabulary by headword in the dictionary.
+
+Let us list the scenarios and steps for this feature.
+
+1. Choose `Find vocabulary action` on main menu. 
+2. Show tips and wait for input
+3. Input the headword of vocabulary and hit `Enter`
+4. Find vocabulary in the dictionary by headword 
+    * If found, display the vocabulary
+    * Otherwise, display `Not found` tips.
+    * If input is empty, return back to main menu
+5. Return back to step 2
+
+According to the analysis,
+
+* Define functions.
+* Write code for the feature.
+* Write comments when needed.
+
+```php
+<?php
+...
+/**
+ *  Display find vocabulary tips
+ */
+function display_find_vocabulary_tips()
+{
+    echo "Enter the headword of vocabulary which you want to find.\n";
+}
+
+/**
+ * Listen input from keyboard and trim left-right blanks
+ */
+function listen_for_input()
+{
+    $handle = fopen("php://stdin", "r");
+    $input = fgets($handle);
+    fclose($handle);
+    return trim($input);
+}
+
+/**
+ * Find vocabulary by headword
+ */
+function find_vocabulary_action()
+{
+    $dict = load_dictionary();
+    print_r($dict);
+
+    while(true)
+    {
+        display_find_vocabulary_tips();
+
+        $input = listen_for_input();
+
+        if(empty($input))
+            return;
+        print_r($input);
+        if(isset($dict[$input]))
+        {
+            echo sprintf("%s => %s\n", $input, $dict[$input]);
+
+        }else
+        {
+            echo "Not found.\n";
+        }
+    }
+}
+
+
+/**
+ * program entry point for running
+ */
+function run()
+{
+    //cycle until select [5]quit action
+    while(true) {
+
+        display_main_menu();
+
+        switch(intval(get_main_menu_action()))
+        {
+            case 1:
+                //add a vocabulary
+                add_vocabulary_action();
+                break;
+
+            case 2:
+                //list vocabularies
+                list_vocabularies_action();
+                break;
+
+            case 3:
+                //find vocabulary
+                find_vocabulary_action();
+                break;
+            case 4:
+                //remove vocabulary
+                break;
+            case 5:
+                //quit the program
+                break 2;
+            default:
+                //continue while cycle
+                break ;
+        }
+    }
+}
+
+run();
+...
+```
+
+
+### 5th Feature : Remove vocabulary from the dictionary.
+
+Let us list the scenarios and steps for the feature.
+
+1. Choose `Remove vocabulary action` on main menu. 
+2. Show tips and wait for input
+3. Input the headword of vocabulary and hit `Enter`
+4. Remove the vocabulary in the dictionary by headword 
+    * If found, remove and display successful tips
+    * Otherwise, display `Not found` tips.
+    * If input is empty, return back to main menu
+5. Return back to step 2
+
+According to the analysis,
+
+* Define functions.
+* Write code for the feature.
+* Write comments when needed.
+
+```php
+<?php
+...
+
+/**
+ *  Display remove vocabulary tips
+ */
+function display_remove_vocabulary_tips()
+{
+    echo "Enter the headword of vocabulary which you want to remove.\n";
+}
+
+/**
+ * Remove vocabulary by headword
+ */
+function remove_vocabulary_action()
+{
+    $dict = load_dictionary();
+
+    while(true)
+    {
+        display_remove_vocabulary_tips();
+
+        $input = listen_for_input();
+
+        if(empty($input))
+            break;
+
+        if(isset($dict[$input]))
+        {
+            echo sprintf("Successfully removed: %s => %s\n", $input, $dict[$input]);
+            unset($dict[$input]);
+
+        }else
+        {
+            echo "Not found.\n";
+        }
+    }
+
+    save_dictionary($dict);
+}
+
+/**
+ * program entry point for running
+ */
+function run()
+{
+    //cycle until select [5]quit action
+    while(true) {
+
+        display_main_menu();
+
+        switch(intval(get_main_menu_action()))
+        {
+            case 1:
+                //add a vocabulary
+                add_vocabulary_action();
+                break;
+
+            case 2:
+                //list vocabularies
+                list_vocabularies_action();
+                break;
+
+            case 3:
+                //find vocabulary
+                find_vocabulary_action();
+                break;
+            case 4:
+                //remove vocabulary
+                remove_vocabulary_action();
+                break;
+            case 5:
+                //quit the program
+                break 2;
+            default:
+                //continue while cycle
+                break ;
+        }
+    }
+}
+
+run();
+
+...
+```

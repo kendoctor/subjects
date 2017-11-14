@@ -207,6 +207,93 @@ function wait_for_enter_to_continue()
     fclose($handle);
 }
 
+/**
+ *  Display find vocabulary tips
+ */
+function display_find_vocabulary_tips()
+{
+    echo "Enter the headword of vocabulary which you want to find.\n";
+}
+
+/**
+ * Listen input from keyboard and trim left-right blanks
+ */
+function listen_for_input()
+{
+    $handle = fopen("php://stdin", "r");
+    $input = fgets($handle);
+    fclose($handle);
+    return trim($input);
+}
+
+/**
+ * Find vocabulary by headword
+ */
+function find_vocabulary_action()
+{
+    $dict = load_dictionary();
+
+    while(true)
+    {
+        display_find_vocabulary_tips();
+
+        $input = listen_for_input();
+
+        if(empty($input))
+            break;
+
+        if(isset($dict[$input]))
+        {
+            echo sprintf("%s => %s\n", $input, $dict[$input]);
+
+        }else
+        {
+            echo "Not found.\n";
+        }
+    }
+}
+
+/**
+ *  Display remove vocabulary tips
+ */
+function display_remove_vocabulary_tips()
+{
+    echo "Enter the headword of vocabulary which you want to remove.\n";
+}
+
+/**
+ * Remove vocabulary by headword
+ */
+function remove_vocabulary_action()
+{
+    $dict = load_dictionary();
+
+    while(true)
+    {
+        display_remove_vocabulary_tips();
+
+        $input = listen_for_input();
+
+        if(empty($input))
+            break;
+
+        if(isset($dict[$input]))
+        {
+            echo sprintf("Successfully removed: %s => %s\n", $input, $dict[$input]);
+            unset($dict[$input]);
+
+        }else
+        {
+            echo "Not found.\n";
+        }
+    }
+
+    save_dictionary($dict);
+}
+
+/**
+ * program entry point for running
+ */
 function run()
 {
     //cycle until select [5]quit action
@@ -228,9 +315,11 @@ function run()
 
             case 3:
                 //find vocabulary
+                find_vocabulary_action();
                 break;
             case 4:
                 //remove vocabulary
+                remove_vocabulary_action();
                 break;
             case 5:
                 //quit the program
