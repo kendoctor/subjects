@@ -411,7 +411,7 @@ Programs also can do checking for a collection of stuffs.
 
 Learn how to imagine from the real word to the virtual world of programming.
 
-Comparision, relating with concepts between these two worlds will help you more easily to understand the cores of programming ideas.  
+Comparing and relating with concepts between these two worlds will help you more easily to understand the cores of programming ideas.  
 
 ## Exercises
 
