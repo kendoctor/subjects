@@ -1,6 +1,6 @@
 # What is PHP?
 
-PHP is a programming language for web. You can use it to develop your own website.
+PHP is a programming language mainly for web application. You can create your own website in PHP.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ To run a PHP program we will need to setup PHP runtime environment.
 
 To create your first PHP program, write codes in a text editor and save it as a .php file. 
 
-For example **my-first-php-program.php**
+For example **hello-world.php**
 
 ### How can I make a simple PHP program?
 
