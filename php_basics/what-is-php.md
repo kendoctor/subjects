@@ -1,5 +1,7 @@
 # What is PHP?
 
+> Learn PHP from our real world.
+
 PHP is a programming language for web. You can use it to develop your own website.
 
 ## Prerequisites
@@ -10,7 +12,7 @@ PHP is a programming language for web. You can use it to develop your own websit
 ## Imaginative terms
 
 * behaviors, actions, verbs -> functions
-* conditions, objects of sentences -> arguments or paramenters
+* conditions, objects of sentences -> arguments or parameters
 * speak-listen, eat-vomit, write-read -> input-output
 * container, holder, paper, memory  -> variable, file, database
 * making decisions -> if, if...else...
