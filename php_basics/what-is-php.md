@@ -2,7 +2,7 @@
 
 > Learn PHP from our real world.
 
-PHP is a programming language for web. You can use it to develop your own website.
+PHP is a programming language mainly for web application. You can create your own website in PHP.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ To run a PHP program we will need to setup PHP runtime environment.
 
 To create your first PHP program, write codes in a text editor and save it as a .php file. 
 
-For example **my-first-php-program.php**
+For example **hello-world.php**
 
 ### How can I make a simple PHP program?
 
@@ -413,7 +413,7 @@ Programs also can do checking for a collection of stuffs.
 
 Learn how to imagine from the real word to the virtual world of programming.
 
-Comparision, relating with concepts between these two worlds will help you more easily to understand the cores of programming ideas.  
+Comparing and relating with concepts between these two worlds will help you more easily to understand the cores of programming ideas.  
 
 ## Exercises
 
