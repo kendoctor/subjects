@@ -7,6 +7,7 @@ PHP is a programming language mainly for web application. You can create your ow
 1. Having common experience about web surfing and basic knowledge about browsers, HTTP.
 2. Understanding how to setup PHP run-time environment.
 
+
 ## Imaginative terms
 
 * behaviors, actions, verbs -> functions
@@ -107,7 +108,7 @@ When a PHP program inputs information we can consider it as listening or reading
 
 ```php
 <?php
-    //speak-to-a-file.php
+    //speak-to-file.php
     
     file_put_contents("a-file-to-speak.txt", "I'm a php program, I can speak to a file.");
     
@@ -117,32 +118,35 @@ When a PHP program inputs information we can consider it as listening or reading
 
 ```php
 <?php
-    //listen-and-speak-from-file-to-terminal.php
+    //listen-file-and-speak-to-terminal.php
     
-    $memorize_what_i_have_heard = file_get_contents("a-file-to-listen.txt");
+    $heard = file_get_contents("a-file-to-listen.txt");
     
-    echo $memorize_what_i_have_heard;
+    echo $heard;
     
 ```
 
-> `Listen` to terminal input from keyboard
+> `Listen` to keyboard input from the terminal
 
 ```php
 <?php
-    //listen_to_terminal_input_from_keyboard.php
+    //listen-keyboard-input.php
     
+    //open input stream
     $handle = fopen("php://stdin", "r");
-    $holds_input_from_keyboard = fgets($handle);
+    //listen for input and assign to a variable
+    $heard = fgets($handle);
+    //close input stream
     fclose($handle);  
     
-    echo $holds_input_from_keyboard;
+    echo $heard;
     
 ```
 
 **NOTE**, the program above can only be run in the terminal for keyboard input to work
 
 ```php
-    php listen_to_terminal_input_from_keyboard.php
+    php listen-keyboard-input.php
     
 ```
 
@@ -157,18 +161,20 @@ PHP programs can store information, or data, in two different ways.
 
 #### Store information or data in temporarily.
 
-We can pour water into cups, and when we need to we can empty the cups. Cups are considered as temporary containers.
+We can pour water into cups, and when we need we can empty the cups. Cups are considered as temporary containers.
 
 PHP programs use variables to store temporary data, and when program is finished the data is lost.
 
-In the example above `$memorize_what_i_have_heard` is a variable; just like a cup which can holding water.
+In the example above `$heard` is a variable; just like a cup which can holding water.
 
 First, we need give a name to a variable and then assign data to it.
 
 ```php
 <?php
+    //variables-datatypes.php
     $holds_number = 99;
     $holds_text = "characters, words, sentences";
+    $holds_a_list_of_things = [1, 2, 3, "you", "me", "her"];
     $holds_from_input = file_get_contents("data.txt");
 
 ```
@@ -181,7 +187,10 @@ When we write information into books we can permanently record information.
 PHP programs can store information, or data, into files and databases. When needed we can retrieve the information.
 
 ```php
+<?php
+    //read data from files and assign to a variable
     $information_read = file_get_contents("file-to-read.txt");
+    //store data in the variable into files
     file_put_contents("file-to-write.txt", $information_read);
     
 ```   
@@ -208,10 +217,12 @@ In program, we also give names for behaviors.
 * file_put_contents - output information to a file 
 * file_get_contents - read information from a file
 * fopen - open a stream for reading information just like opening water tap for getting water.
-* fgets - read information from stream just like getting water when tap is open.
+* fgets - listen and read information from stream just like getting water when tap is open.
 * fclose - close a stream just like closing water tap. 
 
 We call these as functions in programming language.
+
+These functions are build-in ones you can directly use them, we will learn how to define custom functions later.
   
 
 ### What's the object of verb for PHP functions?
@@ -219,7 +230,7 @@ We call these as functions in programming language.
 In sentences, as we know, there are subjects, verbs and objects.  
 
 * They are dancing. - subject + verb
-* We eat food for life. - subject + verb + object
+* We eat food for life. - subject + verb + object + reward
 * She took a book and a pen. - subject + verb + object + object
 * Take care of yourself. - verb + object
 
@@ -246,7 +257,7 @@ When phone was invented, new behaviors occurred.
 How to make a phone call?
 1. Fetch phone
 2. Dial phone numbers
-3. Wait for answer
+3. Wait for answering call
 4. When accepted, speak to the other side, or listen to the other side
 5. When communication finished, hang up phone
 
@@ -256,48 +267,48 @@ In program, you can also create your own functions based on already existed func
 
 This is called **customizing functions**.
 
-Let us create a customized function named `listen_keyboard_input_from_terminal`.
+Let us create a custom function named `listen_keyboard_input_from_terminal`.
 1. open stream for listening just like dialing and being accepted
-2. read stream and store in a temporary variable just like communication
+2. listen and read stream, then store in a temporary variable just like communication
 3. close the stream just like hanging up phone
-4. return input 
+4. return input just like reward
 
-Define customized function and implement its logic in the brackets.
+Define custom function and implement its logic in the brackets.
 
 When created, this function can be called or invoked if needed.
 
 ```php
 <?php
+    //define-custom-functions.php
 
     //define customized function and implement the function's logic
     function listen_keyboard_input_from_terminal()
     {
         $handle = fopen("php://stdin", "r");
-        $holds_input_from_keyboard = fgets($handle);
+        $read = fgets($handle);
         fclose($handle);
         
-        return $holds_input_from_keyboard;
+        return $read;
     }
     
-    //call function and echo the immediate return result 
+    //call function and echo the return result immediately
     echo listen_keyboard_input_from_terminal();    
 
 ```
 
 ### How to make decision
 
-> Decision in the past can not be changed. Decision can be designed for the future.
-
-Deciding is the great ability for humans.
+Deciding is the great trait for humans.
 1. If I have 10$, I will buy this toy.
 2. If it will not rain in the afternoon, I will go to see a film. Otherwise, I will stay at home and play games.
 
   
-Program also has the ability of making decisions.
+Programming languages also have this feature.
 
 ```php
 <?php
-    
+    //make-decisions.php
+
     function speak($words)
     {
         echo $words."\n";
@@ -314,6 +325,7 @@ Program also has the ability of making decisions.
         return $holds_input_from_keyboard;
     }
     
+    //make a decision here
     if(listen_keyboard_input_from_terminal() == "What's your name?")
     {
         speak("My name is Robot.");
@@ -325,6 +337,7 @@ Program also has the ability of making decisions.
     
     $next_question = listen_keyboard_input_from_terminal();
     
+    //make another decision
     if($next_question == "How old are u?")
     {
         speak("I was just born for answering your questions.");
@@ -350,6 +363,7 @@ Programs also can do this.
 
 ```php
 <?php
+    //count-sheeps.php
 
     function speak($words)
     {
@@ -366,6 +380,7 @@ Programs also can do this.
     
     speak("I need let myself go to sleep, maybe counting sheep is a good way.");
     
+    //couting until over 100 times
     count_sheep_in_bed(100);
 ``` 
 
@@ -375,12 +390,18 @@ Programs also can do checking for a collection of stuffs.
 
 ```php
 <?php
+    //check-a-list-of-stuffs.php
 
     function speak($words)
     {
         echo $words."\n";
     }
     
+    /**
+     * filter nubmers from a list of data items
+     * 
+     * do a repating for a array vairable
+     */
     function get_numbers_from_a_collection_of_data($data)
     {
         $numbers = [];
@@ -400,6 +421,7 @@ Programs also can do checking for a collection of stuffs.
     
     speak("There are these numbers below:");
     
+    //this is another method for iterating a array
     foreach($numbers as $single_number)
     {
         speak($single_number);
@@ -409,11 +431,19 @@ Programs also can do checking for a collection of stuffs.
 
 ## Conclusions
 
-Learn how to imagine from the real word to the virtual world of programming.
+Imagine from the real world to the virtual world when we learn programming.
 
-Comparing and relating with concepts between these two worlds will help you more easily to understand the cores of programming ideas.  
+Comparing and relating with the concepts between these two worlds will help you more easy and more quick to understand the core ideas of programming.
+
+1. varaibles, streams and files.
+2. functions, arguments and returns
+3. listen-speak and read-write io(input-output) operations
+4. decisions and repeating
+
 
 ## Exercises
 
-
-
+1. Improve you typing codes and master at least one coding editor or IDE.
+2. Understand and try to use the functions we memtioned in this chapter.
+3. Try to define custom functions by yourself.
+4. Try to write your own decisions and repeatings.
