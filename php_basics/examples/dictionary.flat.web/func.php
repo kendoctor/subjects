@@ -168,6 +168,11 @@ function redirectTo($url)
 }
 
 
+/**
+ * Fetch notifications from session and remove them
+ * 
+ * @return [array] [description]
+ */
 function fetch_notifications()
 {
     session_start();
@@ -185,6 +190,12 @@ function fetch_notifications()
     return $data;
 }
 
+/**
+ * Add notification into session for later usage
+ *     
+ * @param [type] $key   [description]
+ * @param [type] $value [description]
+ */
 function add_notification($key, $value)
 {
     session_start();

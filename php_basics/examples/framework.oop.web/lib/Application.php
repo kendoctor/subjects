@@ -1,24 +1,42 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kendoctor
- * Date: 17/11/17
- * Time: 下午1:08
- */
 
+
+/**
+ * Application for running a web app
+ */
 class Application {
+
+    /**
+     * Routes collection
+     *     
+     * @var array
+     */
     private $routes;
 
     /**
+     * Current Request
+     * 
      * @var Request
      */
     private $request;
 
-    public function load($routes)
+    /**
+     * Load routes for applicaton
+     * 
+     * @param  array $routes 
+     * @return [type]         
+     */
+    public function load(array $routes)
     {
         $this->routes = $routes;
     }
 
+
+    /**
+     * Match the request uri if there's a route 
+     * 
+     * @return [Route]  Matched route if found, otherwise null
+     */
     protected function doMatch()
     {
         $path = $this->request->getPathInfo();
@@ -61,6 +79,12 @@ class Application {
         return null;
     }
 
+    /**
+     * Run application
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function run(Request $request)
     {
         $this->request = $request;
@@ -91,6 +115,15 @@ class Application {
         return $result;
     }
 
+    /**
+     * Resolve callback to a callable, for examples
+     * 1. "index"
+     * 2. "Home::index"
+     * 3. Anonymous function
+     * 
+     * @param  [type] $callback [description]
+     * @return [type]           [description]
+     */
     protected function resolveController($callback)
     {
 

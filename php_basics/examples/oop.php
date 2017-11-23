@@ -192,9 +192,106 @@ $p->run();
 
 
 
-//
-//$file = new File("test.dat");
-//
-//echo $file->readLine();
+
+
+class Taxi {
+    
+    private $currentLocaltion;
+    private $currentDestination;
+
+    public function __construct()
+    {
+        $this->currentLocaltion = "Washington";
+    }
+
+    public function setDestination($dest)
+    {
+        $this->currentDestination = $dest;
+    }
+
+    /**
+     * Change current location
+     * 
+     * @return [type] [description]
+     */
+    protected function changePosistion($location)
+    {
+        $this->currentLocaltion = $location;
+    }
+
+    /**
+     * Plan how to reach the desitination, maybe need a roadmap
+     * 
+     */
+    public function run()
+    {
+        /**
+         * 1. go to this road
+         * 2. go to that road
+         * 3. go to this road
+         * ...
+         * finally reach the destination
+         */
+    }
+}
+
+
+$taxi = new Taxi();
+$taxi->setDestination("New York");
+$taxi->run();
+
+
+
+class QAProgram {
+
+    private $maxTimes;
+
+    public function __construct($maxTimes = 3)
+    {
+        $this->setMaxTimes($maxTimes);
+    }
+
+    public function setMaxTimes($maxTimes)
+    {
+        $this->maxTimes = $maxTimes;
+    }
+    
+    protected function listen()
+    {
+        return $heard;
+    }
+
+    protected function speak($answer)
+    {
+        echo $answer."\n";
+    }
+
+    public function run()
+    {
+        for($i=0; $i<$this->maxTimes; $i++)
+        {
+            $heard = $this->listen();
+            if($heard = "Question - 1")
+            {
+                $this->speak("Answer - 1");
+            }
+            else if($heard = "Question - 2 ")
+            {
+                $this->speak("Answer - 2");
+            }
+            else
+            {
+                $this->speak("I have no idea.");
+            }
+
+        }
+    }
+}
+
+$qaProgram = new QAProgram();
+$qaProgram->setMaxTimes(5);
+$qaProgram->run();
+
+
 
 

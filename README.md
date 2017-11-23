@@ -64,6 +64,20 @@ More complex the application is, more organization and management it needs for p
 
 
 
+## Test and examination project
+
+### Typing exercise
+
+* words typing
+* statement typing
+* sample codes typing
+* follow the sample codes to type
+    * time limited
+    * speed and score calculation
+    * keyboard fingers indicator
+    * wrongs limited
+
+### Hotkeys and shortcuts exercise
 
 
 
