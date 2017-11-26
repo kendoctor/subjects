@@ -10,16 +10,6 @@ PHP is a programming language mainly for web application. You can create your ow
 2. Understanding how to setup PHP run-time environment.
 
 
-## Imaginative terms
-
-* behaviors, actions, verbs -> functions
-* conditions, objects of sentences -> arguments or parameters
-* speak-listen, eat-vomit, write-read -> input-output
-* container, holder, paper, memory  -> variable, file, database
-* making decisions -> if, if...else...
-* repeating or cycling -> for, foreach
-
-
 ## Contents
 
 ### What should I do in the first ?
@@ -136,8 +126,10 @@ When a PHP program inputs information we can consider it as listening or reading
     
     //open input stream
     $handle = fopen("php://stdin", "r");
+
     //listen for input and assign to a variable
     $heard = fgets($handle);
+    
     //close input stream
     fclose($handle);  
     
@@ -174,10 +166,28 @@ First, we need give a name to a variable and then assign data to it.
 ```php
 <?php
     //variables-datatypes.php
-    $holds_number = 99;
-    $holds_text = "characters, words, sentences";
-    $holds_a_list_of_things = [1, 2, 3, "you", "me", "her"];
-    $holds_from_input = file_get_contents("data.txt");
+
+    //integer
+    $age = 22;
+    echo gettype($age); //get the data type of the varaible
+    echo "\n";
+
+    //float number
+    $weight = 55.55;
+    echo gettype($weight);
+    echo "\n";
+
+    //string or text
+    $text = "characters, words, sentences and unprintable characters";
+    echo gettype($text);
+    echo "\n";
+
+    //array, [] is a shorthand for defining an array
+    $fruits = array("apple", "banana", "orange");
+    $mixedItems = [1, 2, "you", 3, "me"]; 
+    echo gettype($fruits);
+    echo "\n";
+
 
 ```
         
@@ -190,15 +200,16 @@ PHP programs can store information, or data, into files and databases. When need
 
 ```php
 <?php
-    //read data from files and assign to a variable
-    $information_read = file_get_contents("file-to-read.txt");
-    //store data in the variable into files
-    file_put_contents("file-to-write.txt", $information_read);
+    //store-data-into-file.php
+
+    //read data from one file and assign to a varaible temporarily
+    $data_to_store = file_get_contents("file-to-read.txt");
+
+    //write data into another file for persistance
+    file_put_contents("file-to-write.txt", $data_to_store);
+
     
 ```   
-
-
-### How to classify information type
 
 
 ### How to identify behaviors or actions
@@ -247,7 +258,7 @@ In program call these objects as arguments or parameters.
 
 **NOTE**
   
-Then, where are subjects? We will discuss this topic later.
+Then, where are subjects? We will discuss this topic in the future.
 
 
 ### How to create new behaviors
@@ -311,17 +322,27 @@ Programming languages also have this ability.
 <?php
     //make-decisions.php
 
+    /**
+     * 1. define two custom functions
+     * 2. speak - each output ending with a new line
+     * 3. listen_keyboard_input_from_terminal - listen and read the input from keyboard
+     */
+
     function speak($words)
     {
         echo $words."\n";
     }
     
+
     function listen_keyboard_input_from_terminal()
     {
         speak("I'm ready for u to ask questions.");
         
         $handle = fopen("php://stdin", "r");
-        $holds_input_from_keyboard = fgets($handle);
+
+
+        $holds_input_from_keyboard = trim(fgets($handle)); //trim function will strip whitespaces from the beginning and end of a string
+        
         fclose($handle);
         
         return $holds_input_from_keyboard;
@@ -354,7 +375,7 @@ Programming languages also have this ability.
     {
         speak("I have no idea.");        
     }
-    
+
 ```
 
 ### How to repeat doing things
@@ -402,7 +423,7 @@ Programs also can do checking for a collection of stuffs.
     /**
      * filter nubmers from a list of data items
      * 
-     * do a repating for a array vairable
+     * check each item in an array vairable
      */
     function get_numbers_from_a_collection_of_data($data)
     {
@@ -411,9 +432,10 @@ Programs also can do checking for a collection of stuffs.
         for($i=0; $i<count($data); $i++)
         {
             if(is_numeric($data[$i])){
-                array_push($numbers, $data[$i]);           
+                array_push($numbers, $data[$i]);
             }
         }
+
         return $numbers;
     }
     
@@ -428,7 +450,7 @@ Programs also can do checking for a collection of stuffs.
     {
         speak($single_number);
     }
-    
+
 ```
 
 ## Conclusions
@@ -441,6 +463,16 @@ Comparing and relating with the concepts between these two worlds will help you 
 2. functions, arguments and returns
 3. listen-speak and read-write io(input-output) operations
 4. decisions and repeating
+
+
+## Imaginative terms
+
+* behaviors, actions, verbs -> functions
+* conditions, objects of sentences -> arguments or parameters
+* speak-listen, eat-vomit, write-read -> input-output
+* container, holder, paper, memory  -> variable, file, database
+* making decisions -> if, if...else...
+* repeating or cycling -> for, foreach
 
 
 ## Exercises

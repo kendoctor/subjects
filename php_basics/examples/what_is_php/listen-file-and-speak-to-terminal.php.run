@@ -1,0 +1,5 @@
+nano file-to-listen.txt
+Ding ding ding
+<ctrl>+xy<enter>
+php listen-file-and-speak-to-terminal.php
+

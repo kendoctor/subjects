@@ -1,0 +1,6 @@
+nano file-to-read.txt
+The information is very important.
+<ctrl>+xy<enter>
+php store-data-into-file.php
+nano file-to-write.txt
+<ctrl>+x

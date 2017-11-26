@@ -1,0 +1,3 @@
+php speak-to-file.php
+nano file-to-speak.txt
+<ctrl>+x
