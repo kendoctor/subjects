@@ -4,19 +4,19 @@
 
 ### PHP basics
 
-#### What's PHP
+#### What's PHP [view](php_basics/what-is-php.md)
 
 A programming language for console and web applicatons.
 
 > Think from real world into a virtual world in PHP
 
-* Basic syntax for a PHP program
-* From behaviors, actions and functionality to functions and operators
-* From speaking-listening and reading-writing to oupt-input
-* From memories and books to variables and files/databases
-* From subject-verb-object in a sentence to arguments/paramenters of a function
-* From making decisions to if/if-else and switch
-* From repeating and cycling to for, foreach and while
+* Basic syntax for a PHP program [go](php_basics/what-is-php.md#what-should-i-do-in-the-first-)
+* From behaviors, actions and functionality to functions and operators [go](php_basics/what-is-php.md#how-to-identify-behaviors-or-actions)
+* From speaking-listening and reading-writing to oupt-input [go](php_basics/what-is-php.md#what-php-programs-can-do-)
+* From memories and books to variables and files/databases [go](php_basics/what-is-php.md#how-to-store-things)
+* From subject-verb-object in a sentence to arguments/paramenters of a function [go](php_basics/what-is-php.md#whats-the-object-of-verb-for-php-functions)
+* From making decisions to if/if-else and switch [go](php_basics/what-is-php.md#how-to-make-decision)
+* From repeating and cycling to for, foreach and while [go](php_basics/what-is-php.md#how-to-repeat-doing-things)
 
 ### Diving into PHP
 
