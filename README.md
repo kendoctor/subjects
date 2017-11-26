@@ -24,6 +24,7 @@ Be familiar with this new world.
 
 > Understand most common things in our everyday life in PHP
 
+* Basic data types such as number, string, boolean, array
 * From intrinsic skills to build-in functions and operators
 * From characters, words, sentences, paragraphs to strings and texts
 * From basic management and organization conception to array

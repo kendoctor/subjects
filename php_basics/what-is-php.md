@@ -112,7 +112,7 @@ When a PHP program inputs information we can consider it as listening or reading
 <?php
     //speak-to-file.php
     
-    file_put_contents("a-file-to-speak.txt", "I'm a php program, I can speak to a file.");
+    file_put_contents("file-to-speak.txt", "I'm a php program, I can speak to a file.");
     
 ```
 
@@ -122,7 +122,7 @@ When a PHP program inputs information we can consider it as listening or reading
 <?php
     //listen-file-and-speak-to-terminal.php
     
-    $heard = file_get_contents("a-file-to-listen.txt");
+    $heard = file_get_contents("file-to-listen.txt");
     
     echo $heard;
     
@@ -283,7 +283,7 @@ When created, this function can be called or invoked if needed.
 <?php
     //define-custom-functions.php
 
-    //define customized function and implement the function's logic
+    //define custom function and implement the function's logic
     function listen_keyboard_input_from_terminal()
     {
         $handle = fopen("php://stdin", "r");
@@ -293,19 +293,19 @@ When created, this function can be called or invoked if needed.
         return $read;
     }
     
-    //call function and echo the return result immediately
+    //call the function and echo the return result immediately
     echo listen_keyboard_input_from_terminal();    
 
 ```
 
 ### How to make decision
 
-Deciding is the great trait for humans.
+Making decisions is the key ability for humans.
 1. If I have 10$, I will buy this toy.
 2. If it will not rain in the afternoon, I will go to see a film. Otherwise, I will stay at home and play games.
 
   
-Programming languages also have this feature.
+Programming languages also have this ability.
 
 ```php
 <?php
