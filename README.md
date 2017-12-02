@@ -83,6 +83,25 @@ More complex the application is, more organization and management it needs for p
 
 
 
+syntax,types,variables,constants,operators,functions,control strutures,class and objects
+
+
+Ready to your PHP jurney
+
+create your own dictionary
+
+console
+stream io
+file io
+string
+array
+menu=>more string
+menu->form
+
+
+
+
+
 
 
 
